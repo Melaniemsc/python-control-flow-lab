@@ -172,19 +172,24 @@ weather_advice()
 # - Ensure to validate input formats and handle unexpected inputs gracefully.
 
 def determine_season():
-    month= input("Enter the month of the year (Jan - Dec): ")
+    month= input("Enter the month of the year (Jan - Dec): ").strip().capitalize
     day= int(input("Enter the day of the month: "))
 
-    if (month == "Dec" and (day>=21 and day<=31)) or (month == "Mar" and (day<=19 and day>=1)) or (month == "Jan" or month == "Feb" ):
+    if (month == "Dec" and (day>=21 and day<=31)) or (month == "Mar" and (day<=19 and day>=1)) or (month == "Jan" and (day>=1 and day<=31) or (month == "Feb" and (day>=1 and day<=29))):
         print(f"{month} {day} is in Winter.")
-    elif (month == "Mar" and (day>=20 and day<=31)) or (month == "Jun" and (day<=20 and day>=1)) or (month == "Apr" or month == "May" ):
+        return
+    elif (month == "Mar" and (day>=20 and day<=31)) or (month == "Jun" and (day<=20 and day>=1)) or (month == "Apr" and (day>=1 and day<=30) or (month == "May" and (day>=1 and day<=31))):
         print(f"{month} {day} is in Spring.")
-    elif (month == "Jun" and (day>=21 and day<=30)) or (month == "Sep" and (day<=21 and day>=1)) or (month == "Jul" or month == "Aug" ):
+        return
+    elif (month == "Jun" and (day>=21 and day<=30)) or (month == "Sep" and (day<=21 and day>=1)) or (month == "Jun" and (day>=1 and day<=30) or (month == "Jul" and (day>=1 and day<=31))):
         print(f"{month} {day} is in Summer.")
-    elif (month == "Sep" and (day>=22 and day<=30)) or (month == "Dec" and (day<=20 and day>=1)) or (month == "Oct" or month == "Nov" ):
+        return
+    elif (month == "Sep" and (day>=22 and day<=30)) or (month == "Dec" and (day<=20 and day>=1)) or (month == "Oct" and (day>=1 and day<=31) or (month == "Nov" and (day>=1 and day<=30))):
         print(f"{month} {day} is in Fall.")
+        return
     else:
         print("invalid input")
+        return
 
 # Call the function
 determine_season()
